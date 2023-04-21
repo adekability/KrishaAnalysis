@@ -1,7 +1,7 @@
 """ dataset.py - module containing management with datasets"""
 
-import pandas
 from dataclasses import dataclass
+import pandas
 
 
 @dataclass
