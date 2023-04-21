@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
+from dataset import Dataset
 
 
 plt.style.use('seaborn')
@@ -27,7 +27,7 @@ class Model:
     def train_model(self):
         """ train_model - method to train and save model """
         pipe_forest = Pipeline([('clf', RandomForestRegressor())])
-        x, y = self.preprocessing(self.get_dataframe())
+        x, y = self.preprocessing(Dataset.fetch_dataframe())
         x_train, x_test, y_train, y_test = train_test_split(x,
                                                             y,
                                                             test_size=0.33,
@@ -35,12 +35,6 @@ class Model:
         model = self.get_model(pipe_forest, self.param_forest, x_train, y_train)
         with open(self.model_filename, 'wb') as file:
             pickle.dump(model, file)
-
-    def get_dataframe(self) -> pd.DataFrame:
-        """ get_dataframe - method to fetch dataframe """
-        file = pd.read_excel(self.filename)
-        dataframe = pd.DataFrame(file)
-        return dataframe
 
     @staticmethod
     def preprocessing(data) -> tuple:
