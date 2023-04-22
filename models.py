@@ -43,3 +43,36 @@ class Parameter(db.Model):
     has_change = db.Column(db.String)
     city = db.Column(db.String)
     district = db.Column(db.String)
+    street = db.Column(db.String)
+    house_num = db.Column(db.String)
+    date = db.Column(db.String)
+
+    def __init__(self, name, price, rooms, is_mortgaged, building, building_type, count_of_floor, square, priv_dormitory, renovation, telephone_type, internet_type, bathroom_type, balcony, balcony_glazed, door_type, parking, furniture, floor_type, ceiling_height, security, map_complex, has_change, city, district, street, house_num, date):
+        self.name = name
+        self.price = price
+        self.rooms = rooms
+        self.is_mortgaged = is_mortgaged
+        self.building = building
+        self.building_type = building_type
+        self.count_of_floor = count_of_floor
+        self.square = square
+        self.priv_dormitory = priv_dormitory
+        self.renovation = renovation
+        self.telephone_type = telephone_type
+        self.internet_type = internet_type
+        self.bathroom_type = bathroom_type
+        self.balcony = balcony
+        self.balcony_glazed = balcony_glazed
+        self.door_type = door_type
+        self.parking = parking
+        self.furniture = furniture
+        self.floor_type = floor_type
+        self.ceiling_height = ceiling_height
+        self.security = security
+        self.map_complex = map_complex
+        self.has_change = has_change
+        self.city = city
+        self.district = district
+        self.street = street
+        self.house_num = house_num
+        self.date = date
