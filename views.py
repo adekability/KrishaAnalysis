@@ -3,7 +3,7 @@ from flask import request, render_template, url_for, redirect, flash
 from flask_login import login_required, current_user, logout_user, login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from services.mapworker import MapWorker
-from models import User
+from models import User, Parameter
 from extensions import db, login_manager
 
 
@@ -89,6 +89,64 @@ def recognizer():
 @app.route('/recognizer', methods=['POST'])
 @login_required
 def post_recognizer():
-    print(request.form)
+    price = request.form.get('price')
+    rooms = request.form.get('rooms')
+    is_mortgaged = request.form.get('is_mortgaged')
+    building = request.form.get('building')
+    building_type = request.form.get('building_type')
+    count_of_floor = request.form.get('count_of_floor')
+    square = request.form.get('square')
+    priv_dormitory = request.form.get('priv_dormitory')
+    renovation = request.form.get('renovation')
+    telephone_type = request.form.get('telephone_type')
+    internet_type = request.form.get('internet_type')
+    bathroom_type = request.form.get('bathroom_type')
+    balcony = request.form.get('balcony')
+    balcony_glazed = request.form.get('balcony_glazed')
+    door_type = request.form.get('door_type')
+    parking = request.form.get('parking')
+    furniture = request.form.get('furniture')
+    floor_type = request.form.get('floor_type')
+    ceiling_height = request.form.get('ceiling_height')
+    security = request.form.get('security')
+    map_complex = request.form.get('map_complex')
+    has_change = request.form.get('has_change')
+    city = request.form.get('city')
+    district = request.form.get('district')
+    street = request.form.get('street')
+    house_num = request.form.get('house_num')
+    date = request.form.get('date')
+
+    parameter = Parameter(
+        price=price,
+        rooms=rooms,
+        is_mortgaged=is_mortgaged,
+        building=building,
+        building_type=building_type,
+        count_of_floor=count_of_floor,
+        square=square,
+        priv_dormitory=priv_dormitory,
+        renovation=renovation,
+        telephone_type=telephone_type,
+        internet_type=internet_type,
+        bathroom_type=bathroom_type,
+        balcony=balcony,
+        balcony_glazed=balcony_glazed,
+        door_type=door_type,
+        parking=parking,
+        furniture=furniture,
+        floor_type=floor_type,
+        ceiling_height=ceiling_height,
+        security=security,
+        map_complex=map_complex,
+        has_change=has_change,
+        city=city,
+        district=district,
+        street=street,
+        house_num=house_num,
+        date=date
+    )
+    db.session.add(parameter)
+    db.session.commit()
 
     return {"status": False}
