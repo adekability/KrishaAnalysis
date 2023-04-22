@@ -90,4 +90,5 @@ def recognizer():
 @login_required
 def post_recognizer():
     print(request.form)
+
     return {"status": False}
