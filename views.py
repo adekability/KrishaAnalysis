@@ -80,7 +80,14 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/recognizer')
+@app.route('/recognizer', methods=['GET'])
 @login_required
 def recognizer():
     return render_template('recognizer.html', name=current_user.name)
+
+
+@app.route('/recognizer', methods=['POST'])
+@login_required
+def post_recognizer():
+    print(request.form)
+    return {"status": False}
