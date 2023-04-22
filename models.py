@@ -46,8 +46,7 @@ class Parameter(db.Model):
     house_num = db.Column(db.String)
     date = db.Column(db.String)
 
-    def __init__(self, name, price, rooms, is_mortgaged, building, building_type, count_of_floor, square, priv_dormitory, renovation, telephone_type, internet_type, bathroom_type, balcony, balcony_glazed, door_type, parking, furniture, floor_type, ceiling_height, security, map_complex, has_change, city, district, street, house_num, date):
-        self.name = name
+    def __init__(self, price, rooms, is_mortgaged, building, building_type, count_of_floor, square, priv_dormitory, renovation, telephone_type, internet_type, bathroom_type, balcony, balcony_glazed, door_type, parking, furniture, floor_type, ceiling_height, security, map_complex, has_change, city, district, street, house_num, date):
         self.price = price
         self.rooms = rooms
         self.is_mortgaged = is_mortgaged

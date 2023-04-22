@@ -86,6 +86,21 @@ def recognizer():
     return render_template('recognizer.html', name=current_user.name)
 
 
+@app.route('/loader', methods=['GET'])
+@login_required
+def loader():
+    return render_template('loader.html', name=current_user.name)
+
+
+@app.route('/result', methods=['GET'])
+@login_required
+def result():
+
+    import time
+    time.sleep(5)
+    return render_template('result.html', name=current_user.name)
+
+
 @app.route('/recognizer', methods=['POST'])
 @login_required
 def post_recognizer():
@@ -149,4 +164,5 @@ def post_recognizer():
     db.session.add(parameter)
     db.session.commit()
 
-    return {"status": False}
+    return redirect(url_for("loader"))
+
