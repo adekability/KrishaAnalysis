@@ -24,8 +24,8 @@
                                 Home
                             </a>
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('profile') }}" class="navbar-item">
-                                Profile
+                            <a href="{{ url_for('recognizer') }}" class="navbar-item">
+                                Recognizer
                             </a>
                             {% endif %}
                             {% if not current_user.is_authenticated %}

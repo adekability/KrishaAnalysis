@@ -30,7 +30,7 @@ def login_post():
         return redirect(url_for('login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('profile'))
+    return redirect(url_for('recognizer'))
 
 
 @app.route('/signup')
@@ -80,7 +80,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/profile')
+@app.route('/recognizer')
 @login_required
-def profile():
-    return render_template('profile.html', name=current_user.name)
+def recognizer():
+    return render_template('recognizer.html', name=current_user.name)
