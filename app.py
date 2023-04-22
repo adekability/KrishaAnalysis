@@ -1,18 +1,11 @@
 """ app - main module """
-from flask import Flask, request
-from services.mapworker import MapWorker
+from flask import Flask
+import os
 
 app = Flask(__name__)
-
-
-@app.route("/map", methods=['GET'])
-def get_map():
-    """ get_map - main function"""
-    longitude = float(request.args.get("lon"))
-    latitude = float(request.args.get("lat"))
-    return MapWorker(longitude=longitude,
-                     latitude=latitude).fetch_map_by_coordinates()
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)), 'app.db')
+app.config['SECRET_KEY'] = 'your secret key'
+from views import *
 
 if __name__ == "__main__":
     app.run()
