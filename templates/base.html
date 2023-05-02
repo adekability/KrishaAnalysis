@@ -21,19 +21,19 @@
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
                             <a href="{{ url_for('index') }}" class="navbar-item">
-                                Home
+                                Басты бет
                             </a>
                             {% if current_user.is_authenticated %}
                             <a href="{{ url_for('recognizer') }}" class="navbar-item">
-                                Recognizer
+                                Болжау
                             </a>
                             {% endif %}
                             {% if not current_user.is_authenticated %}
                             <a href="{{ url_for('login') }}" class="navbar-item">
-                                Login
+                                Кіру
                             </a>
                             <a href="{{ url_for('signup') }}" class="navbar-item">
-                                Sign Up
+                                Тіркелу
                             </a>
                             {% endif %}
                             {% if current_user.is_authenticated %}

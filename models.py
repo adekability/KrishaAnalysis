@@ -18,7 +18,6 @@ class User(UserMixin, db.Model):
 class Parameter(db.Model):
     __tablename__ = "parameters"
     id = db.Column(db.Integer, primary_key=True)
-    price = db.Column(db.String)
     rooms = db.Column(db.String)
     is_mortgaged = db.Column(db.String)
     building = db.Column(db.String)
@@ -44,6 +43,7 @@ class Parameter(db.Model):
     street = db.Column(db.String)
     house_num = db.Column(db.String)
     date = db.Column(db.String)
+    prediction = db.Column(db.Integer)
 
     def __init__(self, rooms, is_mortgaged, building, floor, square, priv_dormitory, renovation, telephone_type, internet_type, bathroom_type, balcony, balcony_glazed, door_type, parking, furniture, floor_type, ceiling_height, security, map_complex, has_change, city, district, street, house_num, date):
         self.rooms = rooms

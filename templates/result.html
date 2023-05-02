@@ -3,11 +3,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <p style="font-size:50px;"> Prediction: {{prediction}}</p>
+<div style="float: left;">
+    <p style="font-size:50px;"> Болжау: {{prediction}}</p>
+    <br>
     <img src="/static/RandomForest.png">
-    <button class="button is-block is-info is-large is-fullwidth">Показать на карте</button>
-    <button class="button is-block is-info is-large is-fullwidth">Вернуться на Главное Окно</button>
-    <button class="button is-block is-info is-large is-fullwidth">Открыть Админ панель</button>
+</div>
+<div style="float: right;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button style="width: 300px;" class="button is-block is-info is-large is-fullwidth"> Картада көрсету </button>
+    <br>
+    <button style="width: 300px;" class="button is-block is-info is-large is-fullwidth">Басты терезеге көшу</button>
+    <br>
+    <button style="width: 300px;" class="button is-block is-info is-large is-fullwidth">Админ панельді ашу </button>
 </div>
 {% endblock %}

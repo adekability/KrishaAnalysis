@@ -16,131 +16,272 @@
                     </select>
                 </div>
             </div>
+        <br>
 <div class="field">
     <div class="control">
-        <label>Is Mortgaged</label>
+        <label>Кепілге қойылған</label>
         <select name="is_mortgaged" required>
-            <option value="Да">Да</option>
-            <option value="No"></option>
+            <option value="Yes">Да</option>
+            <option value="No">Жоқ</option>
         </select>
     </div>
 </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="building" placeholder="Building" autofocus="">
+                    <label>Ғимарат</label>
+                    <select name="building">
+                        {% for build in building %}
+                        <option value="{{ build }}">{{ build }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="floor" placeholder="Floor" autofocus="">
+                <label>Қабат</label>
+                    <select name="floor">
+                        {% for flo in floor %}
+                        <option value="{{ flo }}">{{ flo }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="square" placeholder="Square" autofocus="">
+                    <label>Шаршы метр</label>
+                    <select name="square">
+                        {% for sq in square %}
+                        <option value="{{ sq }}">{{ sq }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-            </div>
+                </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="priv_dormitory" placeholder="PrivDormitory" autofocus="">
+                    <label>Жатақхана</label>
+                    <select name="priv_dormitory">
+                        {% for priv_dorm in priv_dormitory %}
+                        <option value="{{ priv_dorm }}">{{ priv_dorm }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="renovation" placeholder="Renovation" autofocus="">
+                                    <label>Ремонтталған</label>
+                    <select name="renovation">
+                        {% for reno in renovation %}
+                        <option value="{{ reno }}">{{ reno }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="telephone_type" placeholder="TelephoneType" autofocus="">
+                <label>Ремонтталған</label>
+                    <select name="priv_dormitory">
+                        {% for reno in renovation %}
+                        <option value="{{ reno }}">{{ reno }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="internet_type" placeholder="InternetType" autofocus="">
+                    <label>Интернет түрі</label>
+                    <select name="internet_type">
+                        {% for net_t in internet_type %}
+                        <option value="{{ net_t }}">{{ net_t }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="bathroom_type" placeholder="BathroomType" autofocus="">
+
+                    <label>Жуынатын бөлме түрі</label>
+                    <select name="bathroom_type">
+                        {% for bath_type in bathroom_type %}
+                        <option value="{{ bath_type }}">{{ bath_type }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="balcony" placeholder="Balcony" autofocus="">
+                    <label>Балкон</label>
+                    <select name="balcony">
+                        {% for bal in balcony %}
+                        <option value="{{ bal }}">{{ bal }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="balcony_glazed" placeholder="BalconyGlazed" autofocus="">
+                                        <label>Әйнектелген балкон</label>
+                    <select name="balcony_glazed">
+                        {% for bal_glazed in balcony_glazed %}
+                        <option value="{{ bal_glazed }}">{{ bal_glazed }}</option>
+                        {% endfor %}
+                    </select>
+
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="door_type" placeholder="DoorType" autofocus="">
+                    <label>Есік түрі</label>
+                    <select name="door_type">
+                        {% for door in door_type %}
+                        <option value="{{ door }}">{{ door }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="parking" placeholder="Parking" autofocus="">
+                                        <label>Паркинг</label>
+                    <select name="parking">
+                        {% for park in parking %}
+                        <option value="{{ park }}">{{ park }}</option>
+                        {% endfor %}
+                    </select>
+
                 </div>
             </div>
+        <br>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="furniture" placeholder="Furniture" autofocus="">
+                    <label>Жиһаз</label>
+                    <select name="furniture">
+                        {% for furn in furniture %}
+                        <option value="{{ furn }}">{{ furn }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
-  <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="floor_type" placeholder="FloorType" autofocus="">
-                </div>
-            </div>
-  <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="ceiling_height" placeholder="CeilingHeight" autofocus="">
-                </div>
-            </div>
-  <div class="field">
-  <div class="control">
-    <input class="input is-large" type="text" name="security" placeholder="Security" autofocus="">
-  </div>
-</div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="map_complex" placeholder="MapComplex" autofocus="">
+    <label>Еден түрі</label>
+    <select name="floor_type">
+      {% for f in floor_type %}
+        <option value="{{ f }}">{{ f }}</option>
+      {% endfor %}
+    </select>
   </div>
 </div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="has_change" placeholder="HasChange" autofocus="">
+    <label>Төбенің биіктігі</label>
+    <select name="ceiling_height">
+      {% for height in ceiling_height %}
+        <option value="{{ height }}">{{ height }}</option>
+      {% endfor %}
+    </select>
   </div>
 </div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="city" placeholder="City" autofocus="">
+    <label>Қауіпсіздік</label>
+    <select name="security">
+      {% for sec in security %}
+        <option value="{{ sec }}">{{ sec }}</option>
+      {% endfor %}
+    </select>
   </div>
 </div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="district" placeholder="District" autofocus="">
+    <label>ЖК</label>
+    <select name="map_complex">
+      {% for complex in map_complex %}
+        <option value="{{ complex }}">{{ complex }}</option>
+      {% endfor %}
+    </select>
   </div>
 </div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="street" placeholder="Street" autofocus="">
+    <label>0згертілген</label>
+    <select name="has_change">
+      <option value="0">Жоқ</option>
+      <option value="1">Иә</option>
+    </select>
   </div>
 </div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="house_num" placeholder="HouseNum" autofocus="">
+    <label>Қала</label>
+    <select name="city">
+      {% for c in city %}
+        <option value="{{ c }}">{{ c }}</option>
+      {% endfor %}
+    </select>
   </div>
 </div>
+        <br>
 <div class="field">
   <div class="control">
-    <input class="input is-large" type="text" name="date" placeholder="Date" autofocus="">
+    <label>Аудан</label>
+    <select name="district">
+      {% for d in district %}
+        <option value="{{ d }}">{{ d }}</option>
+      {% endfor %}
+    </select>
   </div>
 </div>
-<button class="button is-block is-info is-large is-fullwidth">Recognize</button>
+        <br>
+<div class="field">
+  <div class="control">
+    <label>Көше</label>
+    <select name="street">
+      {% for s in street %}
+        <option value="{{ s }}">{{ s }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+        <br>
+<div class="field">
+  <div class="control">
+    <label>Үй нөмірі</label>
+    <select name="house_num">
+      {% for num in house_num %}
+        <option value="{{ num }}">{{ num }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+        <br>
+<div class="field">
+  <div class="control">
+    <label>Кезең</label>
+    <select name="date">
+      {% for d in date %}
+        <option value="{{ d }}">{{ d }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<button class="button is-block is-info is-large is-fullwidth">Үй бағасын болжау</button>
 </form>
 </h1>
 {% endblock %}

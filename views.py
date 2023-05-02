@@ -88,10 +88,15 @@ def index():
 def recognizer():
     df = Dataset.fetch_dataframe()
     rooms = df['Rooms'].unique()
+    rooms.sort()
     square = df['Square'].unique()
+    square.sort()
     date = df['Date'].unique()
+    date.sort()
     is_mortgaged = df['isMortgaged'].unique()
+    is_mortgaged.sort()
     building = df['Building'].unique()
+    building.sort()
     floor = df['Floor'].unique()
     floor_type = df['FloorType'].unique()
     priv_dormitory = df['PrivDormitory'].unique()
@@ -182,6 +187,37 @@ def post_recognizer():
     house_num = request.form.get('house_num')
     date = request.form.get('date')
 
+    query = Parameter.query.filter_by(
+        rooms=rooms,
+        is_mortgaged=is_mortgaged,
+        building=building,
+        floor=floor,
+        square=square,
+        priv_dormitory=priv_dormitory,
+        renovation=renovation,
+        telephone_type=telephone_type,
+        internet_type=internet_type,
+        bathroom_type=bathroom_type,
+        balcony=balcony,
+        balcony_glazed=balcony_glazed,
+        door_type=door_type,
+        parking=parking,
+        furniture=furniture,
+        floor_type=floor_type,
+        ceiling_height=ceiling_height,
+        security=security,
+        map_complex=map_complex,
+        has_change=has_change,
+        city=city,
+        district=district,
+        street=street,
+        house_num=house_num,
+        date=date
+    ).first()
+
+    if query:
+        prediction = query.prediction
+        return redirect(url_for("result", prediction=prediction))
     parameter = Parameter(
         rooms=rooms,
         is_mortgaged=is_mortgaged,
@@ -217,5 +253,9 @@ def post_recognizer():
                           parking, furniture, city, has_change, district, street, house_num, ceiling_height, security,
                           map_complex]
     prediction = Model().predict_parameters(parameter_to_model)
+    parameter.prediction = prediction
+    db.session.add(parameter)
+    db.session.commit()
+    db.session.refresh(parameter)
     return redirect(url_for("result", prediction=prediction))
 
