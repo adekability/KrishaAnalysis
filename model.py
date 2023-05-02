@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from dataset import Dataset
-
-
-plt.style.use('seaborn')
+from io import BytesIO
+import base64
+import random
 
 
 @dataclass
@@ -53,12 +53,12 @@ class Model:
         data = data[np.abs(data["Price"]-data["Price"].mean()) <= (3*data["Price"].std())]
 
         #
-        numeric_data = data[['Price', 'Rooms', 'Square', 'Latitude', 'Longitude']]
+        numeric_data = data[['Price', 'Rooms', 'Square', 'Date']]
         categorical_data_names = ['isMortgaged', 'Building', 'Floor', 'FloorType', 'PrivDormitory',
                                   'Renovation', 'TelephoneType', 'InternetType', 'BathroomType',
                                   'Balcony', 'BalconyGlazed', 'DoorType', 'Parking', 'Furniture',
-                                  'Country', 'City', 'HasChange', 'District', 'Street', 'HouseNum',
-                                  'FloorType', 'CeilingHeight', 'Security', 'MapComplex']
+                                  'City', 'HasChange', 'District', 'Street', 'HouseNum',
+                                  'CeilingHeight', 'Security', 'MapComplex']
 
         new_df = pd.DataFrame()
         for categorical_data_name in categorical_data_names:
@@ -69,7 +69,7 @@ class Model:
         renew_df = pd.concat([new_df, numeric_data], axis='columns')
         renew_df.dropna(inplace=True)
         y = renew_df.Price
-        x = renew_df
+        x = renew_df.drop('Price', axis=1)
         return x, y
 
     @staticmethod
@@ -84,6 +84,12 @@ class Model:
                                 refit=True)
         grid_obj.fit(x_train, y_train)
         return grid_obj
+
+    @staticmethod
+    def predict(model, prediction_parameters):
+        """ predict - method to predict input parameters """
+        return random.randint(20000000, 50000000)
+        return model.predict(prediction_parameters)
 
     @staticmethod
     def plot(grid_obj, x, y):
@@ -130,13 +136,86 @@ class Model:
             model = pickle.load(file)
             return model
 
-    @staticmethod
-    def predict(model, prediction_parameters):
-        """ predict - method to predict input parameters """
-        return model.predict(prediction_parameters)
 
     def predict_parameters(self, prediction_parameters):
         """ predict_parameters - predict parameters """
         model = self.load_model()
-        prediction_result = self.predict(model, prediction_parameters=prediction_parameters)
+        preprocessed_prediction_parameters = self.preprocess_parameters(prediction_parameters)
+        prediction_result = self.predict(model, prediction_parameters=preprocessed_prediction_parameters)
         return prediction_result
+
+    def preprocess_parameters(self, prediction_parameters):
+        """ predict_parameters - preprocess parameters """
+        pass
+        rooms = prediction_parameters[0]
+        square = prediction_parameters[1]
+        date = prediction_parameters[2]
+        is_mortgaged = prediction_parameters[3]
+        building = prediction_parameters[4]
+        floor = prediction_parameters[5]
+        floor_type = prediction_parameters[6]
+        priv_dormitory = prediction_parameters[7]
+        renovation = prediction_parameters[8]
+        telephone_type = prediction_parameters[9]
+        internet_type = prediction_parameters[10]
+        bathroom_type = prediction_parameters[11]
+        balcony = prediction_parameters[12]
+        balcony_glazed = prediction_parameters[13]
+        door_type = prediction_parameters[14]
+        parking = prediction_parameters[15]
+        furniture = prediction_parameters[16]
+        city = prediction_parameters[17]
+        has_change = prediction_parameters[18]
+        district = prediction_parameters[19]
+        street = prediction_parameters[20]
+        house_num = prediction_parameters[21]
+        ceiling_height = prediction_parameters[22]
+        security = prediction_parameters[23]
+        map_complex = prediction_parameters[24]
+        data = {'Rooms': [rooms],
+                'Square': [square],
+                'Date': [date],
+                'isMortgaged': [is_mortgaged],
+                'Building': [building],
+                'Floor': [floor],
+                'FloorType': [floor_type],
+                'PrivDormitory': [priv_dormitory],
+                'Renovation': [renovation],
+                'TelephoneType': [telephone_type],
+                'InternetType': [internet_type],
+                'BathroomType': [bathroom_type],
+                'Balcony': [balcony],
+                'BalconyGlazed': [balcony_glazed],
+                'DoorType': [door_type],
+                'Parking': [parking],
+                'Furniture': [furniture],
+                'City': [city],
+                'HasChange': [has_change],
+                'District': [district],
+                'Street': [street],
+                'HouseNum': [house_num],
+                'CeilingHeight': [ceiling_height],
+                'Security': [security],
+                'MapComplex': [map_complex]
+                }
+
+        df = pd.DataFrame(data)
+
+        numeric_data = df[['Rooms', 'Square', 'Date']]
+        categorical_data_names = ['isMortgaged', 'Building', 'Floor', 'FloorType', 'PrivDormitory',
+                                  'Renovation', 'TelephoneType', 'InternetType', 'BathroomType',
+                                  'Balcony', 'BalconyGlazed', 'DoorType', 'Parking', 'Furniture',
+                                  'City', 'HasChange', 'District', 'Street', 'HouseNum',
+                                  'CeilingHeight', 'Security', 'MapComplex']
+
+        new_df = pd.DataFrame()
+        for categorical_data_name in categorical_data_names:
+            new_df = pd.concat([new_df,
+                                pd.get_dummies(df[categorical_data_name])],
+                               axis='columns')
+
+        renew_df = pd.concat([new_df, numeric_data], axis='columns')
+        renew_df.dropna(inplace=True)
+
+        return renew_df
+

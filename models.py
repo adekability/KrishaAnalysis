@@ -22,8 +22,7 @@ class Parameter(db.Model):
     rooms = db.Column(db.String)
     is_mortgaged = db.Column(db.String)
     building = db.Column(db.String)
-    building_type = db.Column(db.String)
-    count_of_floor = db.Column(db.String)
+    floor = db.Column(db.String)
     square = db.Column(db.String)
     priv_dormitory = db.Column(db.String)
     renovation = db.Column(db.String)
@@ -46,13 +45,11 @@ class Parameter(db.Model):
     house_num = db.Column(db.String)
     date = db.Column(db.String)
 
-    def __init__(self, price, rooms, is_mortgaged, building, building_type, count_of_floor, square, priv_dormitory, renovation, telephone_type, internet_type, bathroom_type, balcony, balcony_glazed, door_type, parking, furniture, floor_type, ceiling_height, security, map_complex, has_change, city, district, street, house_num, date):
-        self.price = price
+    def __init__(self, rooms, is_mortgaged, building, floor, square, priv_dormitory, renovation, telephone_type, internet_type, bathroom_type, balcony, balcony_glazed, door_type, parking, furniture, floor_type, ceiling_height, security, map_complex, has_change, city, district, street, house_num, date):
         self.rooms = rooms
         self.is_mortgaged = is_mortgaged
         self.building = building
-        self.building_type = building_type
-        self.count_of_floor = count_of_floor
+        self.floor = floor
         self.square = square
         self.priv_dormitory = priv_dormitory
         self.renovation = renovation

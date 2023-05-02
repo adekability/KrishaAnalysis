@@ -8,19 +8,23 @@
     <form method="POST" action="/recognizer">
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="price" placeholder="Price" autofocus="">
+                    <label>Бөлмелер</label>
+                    <select name="rooms">
+                        {% for room in rooms %}
+                        <option value="{{ room }}">{{ room }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
-  <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="rooms" placeholder="Rooms" autofocus="">
-                </div>
-            </div>
-  <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="is_mortgaged" placeholder="isMortgaged" autofocus="">
-                </div>
-            </div>
+<div class="field">
+    <div class="control">
+        <label>Is Mortgaged</label>
+        <select name="is_mortgaged" required>
+            <option value="Да">Да</option>
+            <option value="No"></option>
+        </select>
+    </div>
+</div>
   <div class="field">
                 <div class="control">
                     <input class="input is-large" type="text" name="building" placeholder="Building" autofocus="">
@@ -28,12 +32,7 @@
             </div>
   <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="building_type" placeholder="BuildingType" autofocus="">
-                </div>
-            </div>
-  <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="count_of_floor" placeholder="CountOfFloor" autofocus="">
+                    <input class="input is-large" type="text" name="floor" placeholder="Floor" autofocus="">
                 </div>
             </div>
   <div class="field">
