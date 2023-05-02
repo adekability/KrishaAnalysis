@@ -8,7 +8,8 @@ from extensions import db, login_manager
 import random
 from model import Model
 from dataset import Dataset
-
+from services.mapworker import *
+from services.geoworker import *
 
 @app.route('/login')
 def login():
@@ -69,13 +70,16 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route("/map", methods=['GET'])
-def get_map():
+@app.route("/map/<city>/<street>", methods=['POST'])
+def get_map(city, street):
     """ get_map - main function"""
-    longitude = float(request.args.get("lon"))
-    latitude = float(request.args.get("lat"))
-    return MapWorker(longitude=longitude,
-                     latitude=latitude).fetch_map_by_coordinates()
+
+    geo = GEOWorker().search(f"{city}, {street}")
+
+    longitude = geo.get("longitude")
+    latitude = geo.get("latitude")
+    return MapWorker(longitude=latitude,
+                     latitude=longitude).fetch_map_by_coordinates()
 
 
 @app.route('/')
@@ -155,7 +159,11 @@ def loader():
 @login_required
 def result():
     prediction = request.args.get("prediction")
-    return render_template('result.html', prediction=prediction)
+    city = request.args.get("city")
+    street = request.args.get("street")
+    return render_template('result.html', prediction=prediction,
+                           city=city,
+                           street=street)
 
 
 @app.route('/recognizer', methods=['POST'])
@@ -217,7 +225,11 @@ def post_recognizer():
 
     if query:
         prediction = query.prediction
-        return redirect(url_for("result", prediction=prediction))
+        prediction = f'{prediction:,}'
+        prediction = prediction.replace(",", " ")
+        return redirect(url_for("result", prediction=prediction,
+                                          city=query.city,
+                                          street=query.street))
     parameter = Parameter(
         rooms=rooms,
         is_mortgaged=is_mortgaged,
@@ -257,5 +269,10 @@ def post_recognizer():
     db.session.add(parameter)
     db.session.commit()
     db.session.refresh(parameter)
-    return redirect(url_for("result", prediction=prediction))
+    prediction = f'{prediction:,}'.replace(",", " ")
+
+    prediction = prediction.replace(",", " ")
+    return redirect(url_for("result", prediction=prediction,
+                                      city=parameter.city,
+                                      street=parameter.street))
 

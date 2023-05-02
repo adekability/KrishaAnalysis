@@ -13,7 +13,9 @@ class GEOWorker:
         """ search - method to get place's geo information by search phrase """
         search_result = {}
         geolocator = Nominatim(user_agent=self.app_name)
+        print(search_phrase)
         location = geolocator.geocode(search_phrase)
+        print(location)
         try:
             search_result["address"] = location.address
             search_result["longitude"] = location.longitude

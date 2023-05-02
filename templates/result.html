@@ -15,10 +15,11 @@
     <br>
     <br>
     <br>
+    <form action="{{ url_for('get_map', city=city, street=street) }}" method="post">
     <button style="width: 300px;" class="button is-block is-info is-large is-fullwidth"> Картада көрсету </button>
+</form>
+
     <br>
     <button style="width: 300px;" class="button is-block is-info is-large is-fullwidth">Басты терезеге көшу</button>
-    <br>
-    <button style="width: 300px;" class="button is-block is-info is-large is-fullwidth">Админ панельді ашу </button>
 </div>
 {% endblock %}
